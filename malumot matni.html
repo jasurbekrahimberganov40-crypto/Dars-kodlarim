@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stiker gapiruvchi</title>
+  <style>
+    body {
+      background: #f0f8ff;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    /* Stiker (emoji yoki rasm) */
+    .sticker {
+      position: absolute;
+      font-size: 80px;
+      top: 50%;
+      left: -100px;
+      transform: translateY(-50%);
+      transition: left 2s ease;
+      cursor: pointer;
+    }
+
+    /* Nutq buluti */
+    .bubble {
+      position: absolute;
+      top: 40%;
+      left: 120px;
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 15px;
+      border: 2px solid #333;
+      opacity: 0;
+      transition: opacity 1s ease;
+      font-family: Arial, sans-serif;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 20px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stiker emoji -->
+  <div class="sticker" id="sticker">🤖</div>
+
+  <!-- Gapiruvchi matn -->
+  <div class="bubble" id="bubble">Salom! Men jonli stiker-man 😄</div>
+
+  <script>
+    window.onload = function() {
+      const sticker = document.getElementById("sticker");
+      const bubble = document.getElementById("bubble");
+
+      // Stiker ekranga kirib keladi
+      setTimeout(() => {
+        sticker.style.left = "100px";
+      }, 500);
+
+      // Matn paydo bo‘ladi
+      setTimeout(() => {
+        bubble.style.opacity = 1;
+      }, 2500);
+
+      // Harakat animatsiyasi (stiker yuradi)
+      let pos = 100;
+      setInterval(() => {
+        pos += 2;
+        if (pos > window.innerWidth - 150) pos = -80;
+        sticker.style.left = pos + "px";
+      }, 30);
+    };
+  </script>
+
+</body>
+</html>
